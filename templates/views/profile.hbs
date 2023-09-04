@@ -7,8 +7,32 @@
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="./css/main.css">
+	<script src="/path/to/date-and-time.min.js"></script>
 </head>
 <body>
+	<div class="col-md-6 col-md-offset-4">
+	<script>  
+    var welcome;  
+    var date = new Date();  
+    var hour = date.getHours();  
+    var minute = date.getMinutes();  
+    var second = date.getSeconds();  
+    if (minute < 10) {  
+      minute = "0" + minute;  
+    }  
+    if (second < 10) {  
+      second = "0" + second;  
+    }  
+    if (hour < 12) {  
+      welcome = "Good Morning";  
+    } else if (hour < 17) {  
+      welcome = "good Afternoon";  
+    } else {  
+      welcome = "good Evening";  
+    }  
+    document.write("<h2>" + "<font color='red'>" + welcome + " {{data.fname}}!!</font>" + " Welcome to our website" )
+    </script> 
+	</div> 
 	<div class="col-md-4 col-md-offset-4">
 		<div>
 			<p>Profile Detail</p>
@@ -16,13 +40,16 @@
 		<div>
 			<center>
 				<table class="table table-hover text-center">
-					<tr><td>Name </td>{{fname}}<td></td></tr>
-					<tr><td>Email </td><td></td></tr>
+					<tr><td>Name </td><td>{{data.fname}} {{data.lname}}</td></tr>
+					<tr><td>Email </td><td>{{data.email}}</td></tr>
+					<tr><td>City </td><td>{{data.city}}</td></tr>
+					<tr><td>Gender </td><td>{{data.gender}}</td></tr>
+					<tr><td>Date of Birth </td><td>{{dob}}</td></tr>
 				</table>
 			</center>
 		</div>
 		<div class="abc">
-			<a href="/logout">Logout</a>
+			<a href="/">Logout</a>
 		</div>
 	</div>
 </body>

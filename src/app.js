@@ -7,7 +7,7 @@ require("./db/conn");
 const Register = require("./models/registers");
 const async = require("hbs/lib/async");
 const port = process.env.PORT || 3000;
-
+const date = require('date-and-time')
 
 const static_path = path.join(__dirname, "../public");
 const template_path = path.join(__dirname, "../templates/views");
@@ -77,9 +77,10 @@ app.post("/login",async(req,res) => {
         const password = req.body.password;
 
         const useremail = await Register.findOne({email:email});
-        
+        const now  =  useremail.dob
+        const value = date.format(now,'DD/MM/YYYY');
         if(useremail.password ===password){
-            res.status(201).render("profile");
+            res.status(201).render("profile",{data:useremail,dob:value});
         }else{
             res.send("password are not matching");
         }
